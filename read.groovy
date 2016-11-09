@@ -50,20 +50,16 @@ MqttClient client = new MqttClient("tcp://${mqttAddress}", 'ReaderClient', new M
 ImageScreen imageScreen = new ImageScreen()
 
 client.setCallback(new MqttCallback() {
-    @Override
-    void connectionLost(Throwable throwable) {
-    }
+  void connectionLost(Throwable throwable) {
+  }
 
-    @Override
-    void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-        println("New image from $s")
-        imageScreen.setImage(mqttMessage.payload)
-    }
+  void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+    imageScreen.setImage(mqttMessage.payload)
+  }
 
-    @Override
-    void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-    }
-} as MqttCallback)
+  void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
+  }
+})
 
 client.connect(options)
 client.subscribe(topicName, QOS)
@@ -78,7 +74,9 @@ window.add(imageScreen)
 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
 window.pack()
 window.setVisible(true)
-window.setExtendedState(window.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+window.setLocation(0, 0)
+window.setSize(800, 600)
+// window.setExtendedState(window.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 
 class ImageScreen extends JPanel {
   BufferedImage image
