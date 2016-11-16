@@ -76,7 +76,6 @@ window.pack()
 window.setVisible(true)
 window.setLocation(0, 0)
 window.setSize(800, 600)
-// window.setExtendedState(window.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 
 class ImageScreen extends JPanel {
   BufferedImage image
